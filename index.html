@@ -4,7 +4,7 @@
 	</head>
 	<body>
 		<h2>
-			<strong>Welcome to Constellation Brands Product Locator Public API!</strong><br />
+			<strong>Welcome to Constellation Brands Wine Public API!</strong><br />
 			&nbsp;</h2>
 		<p>
 			The goal of this API is to provide developers access to our product location information in an open and easy-to-use manner.<br />
@@ -16,18 +16,18 @@
 			<li>
 				Sub-Brand Name</li>
 			<li>
-				Varietal (Flavor)</li>
+				Varietal</li>
 			<li>
-				Appellation/Region</li>
+				Appellation</li>
 			<li>
-				Bottle/Packaging Size</li>
+				Vintage</li>
 			<li>
-				In-Store Locations</li>
+				Taste profile</li>
 			<li>
-				On-Premise/Restaurant Locations&nbsp;</li>
+				Assets</li>
 		</ul>
 		<p>
-			The Product Locator API provides a common interface allowing other applications to access Product Locator related data. The framework is based on open-standard REST based web service technologies which allow for maximum flexibility and compatibility with other systems. The API functionality can only be used by authorized customers who have the valid API Key. Below are the list of functions that are exposed through the API.</p>
+			The Product Locator API provides a common interface allowing other applications to access wine data. The framework is based on open-standard REST based web service technologies which allow for maximum flexibility and compatibility with other systems. The API functionality can only be used by authorized customers who have the valid API Key. Below are the list of functions that are exposed through the API.</p>
 		<br />
 		<br />
 		<table border="2" cellpadding="1" cellspacing="1" width="75%">
@@ -36,46 +36,101 @@
 					<th scope="col">
 						<strong>API Calls</strong></th>
 					<th scope="col">
+						<strong>&nbsp;Endpoint</strong></th>
+					<th scope="col">
 						<strong>&nbsp;Description</strong></th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
 					<td>
-						Brands</td>
+						<code>Wines</code></td>
 					<td>
-						Retrieves the list of all active Brand Names along with their Brand Codes.</td>
-				</tr>
-				<tr>
+						<code>http://api.cbrands.com/v1/wines</code></td>
 					<td>
-						Brand Details</td>
-					<td>
-						Retrieves specific information about an individal brand like Sub Brand, Varietal, Size, etc.</td>
-				</tr>
-				<tr>
-					<td>
-						Item Details</td>
-					<td>
-						Retrieves specific information about an individual item like Appellation, Description, EAN, GTIN, etc.</td>
-				</tr>
-				<tr>
-					<td>
-						State Restrictions</td>
-					<td>
-						Retrieves all the State Codes along with their restrictions.</td>
-				</tr>
-				<tr>
-					<td>
-						Product Locator Search</td>
-					<td>
-						Retrieves the search results (Store locations) for the given query parameters which includes proximity search as well.</td>
+						Retrieves the list of all active Brand Names along with their assets.</td>
 				</tr>
 			</tbody>
 		</table>
-		<br />
-		<br />
+		<br /><br />
 		<h2>
-			<strong>Access</strong><br />
+			<strong>Authentication</strong>
+			&nbsp;</h2>
+		Query string parameter <code>apiKey</code> is used to authenticate API calls.
+		<br/><br/>
+		
+		<h2>
+			<strong>Making a request</strong>
+			&nbsp;</h2>
+		All API request use HTTP GET method so creating a request is simply a matter of adding apiKey parameter to endpoint URL. Assuming your API key is <code>test_key</code> the request will be
+		<p><code>http://api.cbrands.com/v1/wines?apiKey=test_key</code>
+		<br/><br/>
+
+		<h2>
+			<strong>Getting JSON or XML response type</strong>
+			&nbsp;</h2>
+		The default response type is JSON. In order to get XML data you can add <code>.xml</code> to endpoint URL.
+		<p><code>http://api.cbrands.com/v1/wines.xml?apiKey=test_key</code>
+		<br/><br/>
+
+		<h2>
+			<strong>Sample response</strong>
+			&nbsp;</h2>
+		<pre><code>
+{
+  "wine": [
+    {
+      "name": "2012 Thorny Rose Sauvignon Blanc COLUMBIA VALLEY",
+      "brand": "Thorny Rose",
+      "appellation": "COLUMBIA VALLEY",
+      "varietal": "Sauvignon Blanc",
+      "vintage": "2012",
+      "origin": {},
+      "tasteProfile": {
+        "flavorTags": [],
+        "aromaTags": []
+      },
+      "vineyards": [],
+      "updated": "2014-02-28T19:00:34.306Z",
+      "varietalBlend": [],
+      "regionalBlend": [],
+      "aging": [],
+      "ratings": [],
+      "assets": {
+        "asset": [
+          {
+            "title": "2012 Thorny Rose Sauvignon Blanc 750ml Front Label",
+            "type": "Labels - Packaging Artwork",
+            "link": "http://42c3bc7fdfe30a38fcfe-cbe7b8688d94f1cded1e85fca3d6889b.r47.cf5.rackcdn.com/THRO/LBL/ThornyRose12_SB_LBL_High.tif",
+            "updated": "2014-02-28T19:00:34.306Z"
+          },
+          {
+            "title": "2012 Thorny Rose Sauvignon Blanc 750ml Back Label",
+            "type": "Labels - Packaging Artwork",
+            "link": "http://42c3bc7fdfe30a38fcfe-cbe7b8688d94f1cded1e85fca3d6889b.r47.cf5.rackcdn.com/THRO/BK/ThornyRose12_SB_BK_High.tif",
+            "updated": "2014-02-28T19:00:34.306Z"
+          }
+        ]
+      }
+    }
+  ]
+}
+        </code></pre>
+		<br/>
+
+		<h2>
+			<strong>Response codes and errors</strong>
+			&nbsp;</h2>
+		The API uses standard HTTP response codes.
+		<p><code>200 OK</code> - the request was processed successfully.
+		<p><code>401 Unauthorized</code> - unauthorized or invalid API key.
+		<p><code>404 Not found</code> - the server has not found anything matching the URI given.
+		<p><code>429 Too Many Requests</code> - too many requests in a given amount of time.
+		<p><code>500 Internal Server Error</code> - the server encountered an unexpected condition which prevented it from fulfilling the request.
+		<br/><br/>
+		
+		<h2>
+			<strong>Access</strong>
 			&nbsp;</h2>
 		<p>
 			To obtain access to this API, please complete the <a href="http://brandcenter.wufoo.com/forms/m7x3z9/" target=""><u><strong>Registration Form</strong></u></a>. Technical documentation can be obtained <a href="https://ecm.cbrands.com/cs/idcplg?IdcService=GET_FILE&amp;dID=171038&amp;dDocName=ECM2116506&amp;allowInterrupt=1"><u><strong>here</strong></u></a>.<br />
