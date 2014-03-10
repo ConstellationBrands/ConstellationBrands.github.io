@@ -1,82 +1,130 @@
-<html>
-	<head>
-		<title></title>
-	</head>
-	<body>
-		<h2>
-			<strong>Welcome to Constellation Brands Public API! (Beta Version)</strong><br />
-			&nbsp;</h2>
-		<p>
-			The goal of this API is to provide developers access to our wine product information in an open and easy-to-use manner.<br />
-			<br />
-			The API provides the following information about our products:</p>
-		<ul>
-			<li>
-				Brand Name</li>
-			<li>
-				Sub-Brand Name</li>
-			<li>
-				Varietal</li>
-			<li>
-				Appellation</li>
-			<li>
-				Vintage</li>
-			<li>
-				Taste profile tags</li>
-			<li>
-				Assets</li>
-		</ul>
-		<p>
-			The API provides a common interface allowing other applications to access wine data. The framework is based on open-standard REST based web service technologies which allow for maximum flexibility and compatibility with other systems. The API functionality can only be used by authorized customers who have the valid API Key. Below are the list of functions that are exposed through the API.</p>
-		<br />
-		<br />
-		<table border="2" cellpadding="1" cellspacing="1" width="75%">
-			<thead>
-				<tr>
-					<th scope="col">
-						<strong>API Calls</strong></th>
-					<th scope="col">
-						<strong>&nbsp;Endpoint</strong></th>
-					<th scope="col">
-						<strong>&nbsp;Description</strong></th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr>
-					<td>
-						<code>Wines</code></td>
-					<td>
-						<code>http://api.cbrands.com/beta/wines</code></td>
-					<td>
-						Retrieves the list of all active Brand Names along with their assets.</td>
-				</tr>
-			</tbody>
-		</table>
-		<br /><br />
-		<h2>
-			<strong>Authentication</strong>
-			&nbsp;</h2>
-		Query string parameter <code>apiKey</code> is used to authenticate API calls.
-		<br/><br/>
-		
-		<h2>
-			<strong>Making a request</strong>
-			&nbsp;</h2>
-		All API request use HTTP GET method so creating a request is simply a matter of adding apiKey parameter to endpoint URL. Assuming your API key is <code>test_key</code> the request will be
-		<p><code>http://api.cbrands.com/beta/wines?apiKey=test_key</code>
-		<br/><br/>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" 
+    "http://www.w3.org/TR/html4/strict.dtd">
+<HTML>
+    <HEAD>
+        <link href="http://brandcenter.cbrands.com/groups/public/documents/webcontent/global_brandcenter_2_css.css" type='text/css' media="screen" rel="stylesheet"/>
+        <style>
+        </style>
+    </head>
+    <body class="">
+        <!--[if IE 8]>
+        <body class="ie8 ">
+            <![endif]-->
+            <!--[if IE 9]>
+            <body class="ie9 ">
+                <![endif]-->
+                <!--[if (!IE 8]) | (!IE 9)><body class=""><![endif]-->
+                <div class="container homepage">
+                    <!--Container (Header and main content) Begins -->
+                    <div class="header">
+                        <!-- Header Begins--> 
+                        <div class="brandBar">
+                            <!--Brand Bar Begins-->
+                            <div class="wrap">
+                                <div class="sitewrap">
+                                    <span class="floatLeft logo"><a href="/index.html"><img alt="logo_cw_main_rev1.png" src="http://brandcenter.cbrands.com/cs/groups/creative_asset/@cbi/@dam/@cwus/@err/documents/creative_asset/ca-ecm2027191.png" /></a></span>
+                                </div>
+                            </div>
+                        </div>
+                        <!--Brand Bar Ends-->
+                    </div>
+                    <!-- Header Ends-->
+                    <div class="maincontent">
+                        <div class="sitewrap" style=overflow:auto>
+                            <h2>
+                                <strong>Welcome to Constellation Brands Public API! (Beta Version)</strong><br />
+                                &nbsp;
+                            </h2>
+                            <p>
+                                The goal of this API is to provide developers access to our wine product information in an open and easy-to-use manner.<br />
+                                <br />
+                                The API provides the following information about our products:
+                            </p>
+                            <ul>
+                                <li>
+                                    Brand Name
+                                </li>
+                                <li>
+                                    Sub-Brand Name
+                                </li>
+                                <li>
+                                    Varietal
+                                </li>
+                                <li>
+                                    Appellation
+                                </li>
+                                <li>
+                                    Vintage
+                                </li>
+                                <li>
+                                    Taste profile tags
+                                </li>
+                                <li>
+                                    Assets
+                                </li>
+                            </ul>
+                            <p>
+                                The API provides a common interface allowing other applications to access wine data. The framework is based on open-standard REST based web service technologies which allow for maximum flexibility and compatibility with other systems. The API functionality can only be used by authorized customers who have the valid API Key. Below are the list of functions that are exposed through the API.
+                            </p>
+                            <br />
+                            <br />
+                            <table border="2" cellpadding="1" cellspacing="1" width="75%">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">
+                                            <strong>API Calls</strong>
+                                        </th>
+                                        <th scope="col">
+                                            <strong>&nbsp;Endpoint</strong>
+                                        </th>
+                                        <th scope="col">
+                                            <strong>&nbsp;Description</strong>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <code>Wines</code>
+                                        </td>
+                                        <td>
+                                            <code>http://api.cbrands.com/beta/wines</code>
+                                        </td>
+                                        <td>
+                                            Retrieves the list of all active Brand Names along with their assets.
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <br /><br />
+                            <h2>
+                                <strong>Authentication</strong>
+                                &nbsp;
+                            </h2>
+                            Query string parameter <code>apiKey</code> is used to authenticate API calls.
+                            <br/><br/>
+                            <h2>
+                                <strong>Making a request</strong>
+                                &nbsp;
+                            </h2>
+                            All API request use HTTP GET method so creating a request is simply a matter of adding apiKey parameter to endpoint URL. Assuming your API key is <code>test_key</code> the request will be
+                            <p><code>http://api.cbrands.com/beta/wines?apiKey=test_key</code>
+                                <br/><br/>
+                            <h2>
+                                <strong>Getting JSON or XML response type</strong>
+                                &nbsp;
+                            </h2>
+                            The default response type is JSON. In order to get XML data you can add <code>.xml</code> to endpoint URL.
+                            <p><code>http://api.cbrands.com/beta/wines.xml?apiKey=test_key</code>
+                                <br/><br/>
+                            <h2>
+                                <strong>Sample response</strong>
+                                &nbsp;
+                            </h2>
+                            <!-- HTML generated using hilite.me -->
+                            <div style="background: #ffffff; overflow:auto;width:auto;border:solid gray;border-width:.1em .1em .1em .8em;padding:.2em .6em;">
+                                <pre style="margin: 0; line-height: 125%">
 
-		<h2>
-			<strong>Getting JSON or XML response type</strong>
-			&nbsp;</h2>
-		The default response type is JSON. In order to get XML data you can add <code>.xml</code> to endpoint URL.
-		<p><code>http://api.cbrands.com/beta/wines.xml?apiKey=test_key</code>
-		<br/><br/>
-
-		<h2>
-			<strong>Sample response</strong>
-			&nbsp;</h2>
-		<pre><code>
 {
   "wine": [
     {
@@ -115,30 +163,56 @@
     }
   ]
 }
-        </code></pre>
-		<br/>
-
-		<h2>
-			<strong>Response codes and errors</strong>
-			&nbsp;</h2>
-		The API uses standard HTTP response codes.
-		<p><code>200 OK</code> - the request was processed successfully.
-		<p><code>401 Unauthorized</code> - unauthorized or invalid API key.
-		<p><code>404 Not found</code> - the server has not found anything matching the URI given.
-		<p><code>429 Too Many Requests</code> - too many requests in a given amount of time.
-		<p><code>500 Internal Server Error</code> - the server encountered an unexpected condition which prevented it from fulfilling the request.
-		<br/><br/>
-		
-		<h2>
-			<strong>Access</strong>
-			&nbsp;</h2>
-		<p>
-			To obtain access to this API, please complete the <a href="http://brandcenter.wufoo.com/forms/m7x3z9/" target=""><u><strong>Registration Form</strong></u></a>. Technical documentation can be obtained <a href=""><u><strong>here</strong></u></a>.<br />
-			<br />
-			By completing the Registration Form, you agree to Constellation Brands <strong><u><a href="http://brandcenter.cbrands.com/apiterms.html" target="">Terms of Use</a></u></strong>.&nbsp;&nbsp;&nbsp;&nbsp;<br />
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-		<br />
-		<h4>
-			<strong><u><a href="mailto:digitalassets@cbrands.com" target="">Contact Us</a></u></strong>&nbsp;&nbsp;</h4>
-	</body>
-</html>
+</pre>
+                            </div>
+                            <br/>
+                            <h2>
+                                <strong>Response codes and errors</strong>
+                                &nbsp;
+                            </h2>
+                            The API uses standard HTTP response codes.
+                            <p><code>200 OK</code> - the request was processed successfully.
+                            <p><code>401 Unauthorized</code> - unauthorized or invalid API key.
+                            <p><code>404 Not found</code> - the server has not found anything matching the URI given.
+                            <p><code>429 Too Many Requests</code> - too many requests in a given amount of time.
+                            <p><code>500 Internal Server Error</code> - the server encountered an unexpected condition which prevented it from fulfilling the request.
+                                <br/><br/>
+                            <h2>
+                                <strong>Access</strong>
+                                &nbsp;
+                            </h2>
+                            <p>
+                                To obtain access to this API, please complete the <a href="http://brandcenter.wufoo.com/forms/m7x3z9/" target=""><u><strong>Registration Form</strong></u></a>. Technical documentation can be obtained <a href=""><u><strong>here</strong></u></a>.<br />
+                                <br />
+                                By completing the Registration Form, you agree to Constellation Brands <strong><u><a href="http://brandcenter.cbrands.com/apiterms.html" target="">Terms of Use</a></u></strong>.&nbsp;&nbsp;&nbsp;&nbsp;<br />
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            </p>
+                            <br />
+                            <h4>
+                                <strong><u><a href="mailto:digitalassets@cbrands.com" target="">Contact Us</a></u></strong>&nbsp;&nbsp;
+                            </h4>
+                        </div>
+                    </div>
+                    <!-- Latest Updates Asides Ends -->
+                    <title>Brand Center - Product Locator API</title>
+                    <div class="kicker cb">
+                        <!-- Kickers Begin -->
+                        <div class="col-3 floatLeft">
+                        </div>
+                    </div>
+                    <div class="border floatLeft">
+                        <div class="borderY"></div>
+                    </div>
+                    <div class="col-3 floatLeft">
+                    </div>
+                </div>
+                <div class="border floatLeft">
+                    <div class="borderY"></div>
+                </div>
+                <div class="col-3 floatLeft">
+                </div>
+                </div>
+                </div> <!-- Kickers End -->
+                </div>
+                </div>
+                </div> <!-- Container (Header and main content) Ends -->
