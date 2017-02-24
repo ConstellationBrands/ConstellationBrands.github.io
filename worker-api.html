@@ -1,0 +1,401 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="assets/favicon.ico">
+    <script src="https://use.fontawesome.com/d7623d0ea2.js"></script>
+    <script type="text/javascript" src="https://cdn.emailjs.com/dist/email.min.js"></script>
+      <script type="text/javascript">
+         (function(){
+            emailjs.init("user_h2PCsp6JtsNaWSqiA64s7");
+         })();
+      </script>
+
+    <title>Worker Demographics API</title>
+
+    <link href="css/api-console-light-theme.css" rel="stylesheet" class="theme">
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="css/api-portal.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-toggleable-xl navbar-light bg-faded">
+      <a class="navbar-brand mr-auto" href="index.html"><img class="img-responsive" src="assets/logo.png" height="38"></a>
+      <form class="form-inline pull-xl-right">
+        <a class="btn btn-primary" href="https://anypoint.mulesoft.com/apiplatform/cbrands/#/portals" role="button">API Developer Portal &raquo;</a>
+      </form>
+    </nav>
+
+    <div class="jumbotron">
+      <div class="container">
+        <h1 class="display-4">Constellation Brands API Catalog</h1>
+        <p class="lead">Developer guides and documentation for Constellation Brands APIs.</p>
+        <p class="float-left hidden-md-up">
+          <button type="button" class="btn btn-primary btn-sm" data-toggle="offcanvas"><i class="fa fa-bars fa-lg" aria-hidden="true"></i></button>
+        </p>
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div class="row row-offcanvas row-offcanvas-left">
+
+        <div class="col-6 col-md-3 sidebar-offcanvas" id="sidebar">
+          <div class="list-group">
+            <a href="getting-started.html" class="list-group-item"><i class="fa fa-info-circle fa-fw fa-lg" aria-hidden="true"></i>Getting Started</a>
+            <a href="compass-api.html" class="list-group-item"><i class="fa fa-compass fa-fw fa-lg" aria-hidden="true"></i>Compass API</a>
+            <a href="brands-api.html" class="list-group-item"><i class="fa fa-tags fa-fw fa-lg" aria-hidden="true"></i>Brands API</a>            
+            <a href="items-api.html" class="list-group-item"><i class="fa fa-shopping-cart fa-fw fa-lg" aria-hidden="true"></i>Items API</a>            
+            <a href="bottle-shots-api.html" class="list-group-item"><i class="fa fa-picture-o fa-fw fa-lg" aria-hidden="true"></i>Bottle Shots API</a>
+            <a href="worker-api.html" class="list-group-item active"><i class="fa fa-users fa-fw fa-lg" aria-hidden="true"></i>Workers API</a>
+          </div>
+        </div>
+
+        <div class="col-12 col-md-9">
+          <div class="row justify-content-center">
+            <div class="col-12 col-md-9">
+              <h2>Worker Demographics API Overview</h2>
+              <p>This API retrieves demographic information for employees of Constellation Brands and 3rd party partners. This reference includes:</p>
+              <p>
+                <ul>
+                  <li><a href=#worker-info>Worker Attributes</a></li>
+                  <li><a href=#job-info>Job Attributes</a></li>
+                  <li><a href=#work-contact-info>Work Contact Information</a></li>
+                  <li><a href=#personal-contact-info>Personal Contact Information</a></li>
+                  <li><a href=#api-console>API Console</a></li>
+                </ul>
+              </p>
+              <p>
+                The Worker API supports retrieval of all employees’ information, specific employees, and employees added/modified within specific date range. The API doesn’t provide the entire dataset in one call, but does support pagination. Consumers can dictate how many records they need to retrieve.
+              </p>
+
+              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#requestKeyModal">
+                <i class="fa fa-key fa-fw" aria-hidden="true"></i>Request an API Key
+              </button>
+
+              <div class="modal fade" id="requestKeyModal" tabindex="-1" role="dialog" aria-labelledby="requestKeyModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="requestKeyModalLabel">Request a Worker API Key</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <form id="requestForm" method="post">
+                      <div class="modal-body">
+                        <div class="form-group">
+                          <label for="name-input">Name</label>
+                          <input class="form-control" type="text" id="name-input" name="name">
+                        </div>
+                        <div class="form-group">
+                          <label for="email-input">Email address</label>
+                          <input type="email" class="form-control" id="email-input" name="email">
+                        </div>
+                        <div class="form-group">
+                          <label for="phone-input">Phone number</label>
+                          <input type="tel" class="form-control" id="phone-input" name="phone">
+                        </div>
+                        <div class="form-group">
+                          <label for="optional-input">Additional detail (optional)</label>
+                          <textarea class="form-control" id="optional-input" rows="3" placeholder="Application name, estimated number of API calls, etc."></textarea>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-primary" id="submit">Request Key</button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+
+              <h2 style="margin-top:50px;">Worker Detail</h2>
+              <p>
+                The Worker Demographics API returns a number of attributes for a given employee. This includes personal info, job info, and contact info.
+              </p>
+              <h3 id="worker-info" style="margin-top:30px;">Worker Attributes</h3>
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Attribute</th>
+                    <th>Description</th>
+                    <th>Type</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">ID</th>
+                    <td>7-digit unique employee ID</td>
+                    <td>string</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">workerType</th>
+                    <td>"Employee", "Contingent Worker", or "Distributor"</td>
+                    <td>string</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">firstName</th>
+                    <td>Legal first name</td>
+                    <td>string</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">middleName</th>
+                    <td>Legal middle name or initial (whichever is supplied in the worker's record)</td>
+                    <td>string</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">lastName</th>
+                    <td>Legal surname</td>
+                    <td>string</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">preferredName</th>
+                    <td>Concatenated full preferred name (First Middle Last)</td>
+                    <td>string</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">dateOfBirth</th>
+                    <td>Birth date (YYYY-MM-DD)</td>
+                    <td>string</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">timeZone</th>
+                    <td>Time zone of the worker's work location</td>
+                    <td>string</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">preferredLanguage</th>
+                    <td>Language specified by the worker as preferred for user interfaces</td>
+                    <td>string</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">createdOnDate</th>
+                    <td>Date and time the worker's user account was created (YYYY-MM-DD:hh:mm.ssss)</td>
+                    <td>string</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">activeDirectoryDomain</th>
+                    <td>Worker's domain in Constellation Brands Active Directory (if applicable)</td>
+                    <td>string</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h3 id="job-info" style="margin-top:30px;">Job Attributes</h3>
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Attribute</th>
+                    <th>Description</th>
+                    <th>Type</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">code</th>
+                    <td>7-digit job code</td>
+                    <td>string</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">title</th>
+                    <td>Worker's job title as assigned by HR</td>
+                    <td>string</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">status</th>
+                    <td>"Active", "Terminated", or "On Leave"</td>
+                    <td>string</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">isManager</th>
+                    <td>True/false flag indicating if the worker has any direct reports</td>
+                    <td>boolean</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">organizationName</th>
+                    <td>HR name for the worker's supervisory organization</td>
+                    <td>string</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">managerId</th>
+                    <td>7-digit worker ID of the worker's primary manager</td>
+                    <td>string</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">managerName</th>
+                    <td>Concatenated preferred name of the worker's primary manager</td>
+                    <td>string</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">company</th>
+                    <td>Legal parent company for the specified worker</td>
+                    <td>string</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">department</th>
+                    <td>Worker's department in the reporting hierarchy (one level above Organization)</td>
+                    <td>string</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">division</th>
+                    <td>Worker's division in the reporting hierarhy (one level above Department)</td>
+                    <td>string</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">costCenterId</th>
+                    <td>Numeric identifier for the worker's cost center</td>
+                    <td>string</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">costCenterName</th>
+                    <td>Descriptor for the worker's cost center</td>
+                    <td>string</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">startDate</th>
+                    <td>First day of work for the worker in their current position (YYYY-MM-DD)</td>
+                    <td>string</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h3 id="work-contact-info" style="margin-top:30px;">Work Contact Information</h3>
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Attribute</th>
+                    <th>Description</th>
+                    <th>Type</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">email</th>
+                    <td>Primary work email address</td>
+                    <td>string</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">phoneNumber</th>
+                    <td>Primary work phone number</td>
+                    <td>string</td>
+                  </tr>
+                  <tr class="table-info">
+                    <th scope="row" colspan="4">Location</th>
+                  </tr>
+                  <tr class="table-info">
+                    <th scope="row">name</th>
+                    <td>Name of worker's primary work location</td>
+                    <td>string</td>
+                  </tr>
+                  <tr class="table-info">
+                    <th scope="row">address1</th>
+                    <td>Line 1 of the primary work location's address</td>
+                    <td>string</td>
+                  </tr>
+                  <tr class="table-info">
+                    <th scope="row">address2</th>
+                    <td>Line 2 of the primary work location's address</td>
+                    <td>string</td>
+                  </tr>
+                  <tr class="table-info">
+                    <th scope="row">address3</th>
+                    <td>Line 3 of the primary work location's address</td>
+                    <td>string</td>
+                  </tr>
+                  <tr class="table-info">
+                    <th scope="row">city</th>
+                    <td>City of the primary work location's address</td>
+                    <td>string</td>
+                  </tr>
+                  <tr class="table-info">
+                    <th scope="row">state_province</th>
+                    <td>State/province of the primary work location's address</td>
+                    <td>string</td>
+                  </tr>
+                  <tr class="table-info">
+                    <th scope="row">postalCode</th>
+                    <td>Postal code of the primary work location's address</td>
+                    <td>string</td>
+                  </tr>
+                  <tr class="table-info">
+                    <th scope="row">country</th>
+                    <td>Country of the primary work location's address</td>
+                    <td>string</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h3 id="personal-contact-info" style="margin-top:30px;">Personal Contact Information</h3>
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Attribute</th>
+                    <th>Description</th>
+                    <th>Type</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">mobilePhoneNumber</th>
+                    <td>Personal mobile phone number</td>
+                    <td>string</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">homePhoneNumber</th>
+                    <td>Home phone number</td>
+                    <td>string</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">email</th>
+                    <td>Primary personal email address</td>
+                    <td>string</td>
+                  </tr>
+                </tbody>
+              </table>
+              <h2 id="api-console" style="margin-top:50px;">API Console</h2>
+              <div ng-app="ramlConsoleApp" ng-cloak class="raml-console-body api-console">
+                <raml-console-loader src="assets/worker.raml" options="{ disableTitle: true, disableRamlClientGenerator: true, disableThemeSwitcher: true, documentationCollapsed: true, singleView: true }"></raml-console-loader>
+              </div>
+            </div><!--/span-->
+          </div><!--/row-->
+        </div><!--/span-->
+
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <p>&copy; 2017 Constellation Brands, Inc.</p>
+      </footer>
+
+    </div><!--/.container-->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="js/ie10-viewport-bug-workaround.js"></script>
+    <script src="js/offcanvas.js"></script>
+    <script src="js/api-console-vendor.min.js"></script>
+    <script src="js/api-console.min.js"></script>
+    <script>
+      $('#requestKeyModal').modal()
+    </script>
+    <script src="js/request-form.js"></script>
+    <script>
+      $.noConflict();
+    </script>
+  </body>
+</html>
